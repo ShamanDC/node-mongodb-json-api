@@ -72,3 +72,22 @@ h1 {
     width: 100%;
     max-width: 400px
 }
+
+.box.data-container .ajax-spinner-container{
+    display: none;
+    width: 120px;
+    margin: 0 auto;
+}
+
+.box.data-container .ajax-spinner-container.show{
+    display: block;
+}
+
+.box.data-container .data-item b,
+.box.data-container .data-item span {
+    margin-right: 10px;
+}
+
+.box.data-container .data-item b{
+    font-weight: bold;
+}
