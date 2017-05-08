@@ -2,6 +2,7 @@
 var
 http = require ('http'),
 express = require('express'),
+path = require('path'),
 app = express(),
 url = require('url'),
 mongoose = require ("mongoose"),
@@ -16,6 +17,8 @@ initApp = function(){
     console.log('Your Node.js application is listening on port #: ' + app.get('port'));
   });
 };
+
+app.use(express.static(path.join(__dirname, 'www')));
 
 //database implementation
 
@@ -46,18 +49,6 @@ salesMember = mongoose.model('Sales', salesSchema);
 app.configure(function(){
   app.set('port',5000);
 });
-
-//default
-app.get("/",function(req,res){
-  res.writeHead(200, {'Content-Type': 'text/html'});
-  var str = '<h1>Welcome to your simple JSONP Service</h1>'
-  + '<b><a href="/json">View JSON Data</a>   <a href="/json/delete">Delte all JSON Data</a></b>'
-  + '<p><b>To make a JSONP call:</b> /json?callback=CALLBACKNAME</p>'
-  + '<p><b>To add a user:</b> /addUser?fname=FIRSTNAME&lname=LASTNAME&phone=PHONENUMBER</p>';
-
-  //end the request with the home page html
-  res.end(str);
-})
 
 //delte all data in the database
 app.get("/json/delete",function(req,res){
